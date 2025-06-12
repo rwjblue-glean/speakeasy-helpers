@@ -2,6 +2,7 @@
 go = "1.24"
 gotestsum = "latest"
 golangci-lint = "latest"
+goreleaser = "latest"
 
 [tasks.test]
 description = "Run tests with gotestsum"
@@ -26,7 +27,7 @@ run = "golangci-lint fmt ./..."
 
 [tasks.build]
 description = "Build the binary"
-run = "go build -o bin/speakeasy-helpers ."
+run = "go build -o dist/speakeasy-helpers ."
 
 [tasks.install]
 description = "Install the binary"

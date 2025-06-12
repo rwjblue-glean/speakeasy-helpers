@@ -2,7 +2,16 @@
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
+)
+
+// Version information - will be set by SetVersionInfo
+var (
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
 )
 
 var rootCmd = &cobra.Command{
@@ -12,6 +21,7 @@ var rootCmd = &cobra.Command{
 to help you work more effectively with Speakeasy generated API clients.
 
 This tool includes various subcommands for common tasks.`,
+	Version: version,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -20,5 +30,15 @@ func Execute() error {
 	return rootCmd.Execute()
 }
 
+// SetVersionInfo sets the version information for the CLI
+func SetVersionInfo(v, c, d string) {
+	version = v
+	commit = c
+	date = d
+	rootCmd.Version = version
+	rootCmd.SetVersionTemplate(fmt.Sprintf("speakeasy-helpers %s (commit: %s, built: %s)\n", version, commit, date))
+}
+
 func init() {
+	rootCmd.SetVersionTemplate(fmt.Sprintf("speakeasy-helpers %s (commit: %s, built: %s)\n", version, commit, date))
 }
