@@ -11,6 +11,14 @@ A collection of command-line helper utilities for working with Speakeasy generat
 
 ## Installation
 
+### mise
+
+Installation via [mise](https://mise.jdx.dev/) is very straightforward. If you have mise installed, you can run:
+
+```bash
+mise use ubi:rwjblue-glean/speakeasy-helpers
+```
+
 ### Download Pre-built Binaries
 
 Download the latest release for your platform from the [GitHub Releases page](https://github.com/rwjblue-glean/speakeasy-helpers/releases).
