@@ -28,7 +28,7 @@ type ArazzoWorkflow struct {
 	ExtraData map[string]interface{} `yaml:",inline"`
 }
 
-// ArazzoFile represents the structure of the test.arazzo.yaml file
+// ArazzoFile represents the structure of the tests.arazzo.yaml file
 type ArazzoFile struct {
 	Arazzo             string                   `yaml:"arazzo"`
 	Info               map[string]interface{}   `yaml:"info"`
@@ -39,7 +39,7 @@ type ArazzoFile struct {
 var resetTestsCmd = &cobra.Command{
 	Use:   "reset-tests",
 	Short: "Reset test entries for specified operation IDs",
-	Long: `Delete test entries from both gen.lock and test.arazzo.yaml files
+	Long: `Delete test entries from both gen.lock and tests.arazzo.yaml files
 for the specified operation IDs. This is helpful to allow a subsequent
 'speakeasy run' to regenerate the test files (e.g. if you have new fields /
 equirements in your upstream OpenAPI spec)`,
@@ -71,10 +71,10 @@ func runResetTests(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("failed to process gen.lock: %w", err)
 	}
 
-	// Process test.arazzo.yaml file
-	arazzoPath := ".speakeasy/test.arazzo.yaml"
+	// Process tests.arazzo.yaml file
+	arazzoPath := ".speakeasy/tests.arazzo.yaml"
 	if err := processArazzoFile(arazzoPath, operationIDSet); err != nil {
-		return fmt.Errorf("failed to process test.arazzo.yaml: %w", err)
+		return fmt.Errorf("failed to process tests.arazzo.yaml: %w", err)
 	}
 
 	fmt.Printf("Successfully deleted test entries for operation IDs: %v\n", operationIDs)
