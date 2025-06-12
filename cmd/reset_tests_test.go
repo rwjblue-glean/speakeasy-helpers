@@ -79,7 +79,7 @@ workflows:
           - condition: $statusCode == 200
     x-speakeasy-test-group: client_feedback
 `
-	err = os.WriteFile(filepath.Join(speakeasyDir, "test.arazzo.yaml"), []byte(arazzoContent), 0o644)
+	err = os.WriteFile(filepath.Join(speakeasyDir, "tests.arazzo.yaml"), []byte(arazzoContent), 0o644)
 	require.NoError(t, err)
 
 	// Set up the command with operation IDs to delete
@@ -105,7 +105,7 @@ workflows:
 	assert.Contains(t, updatedGenLock.GeneratedTests, "getannouncement")
 
 	// Verify arazzo file was updated correctly
-	arazzoData, err := os.ReadFile(filepath.Join(speakeasyDir, "test.arazzo.yaml"))
+	arazzoData, err := os.ReadFile(filepath.Join(speakeasyDir, "tests.arazzo.yaml"))
 	require.NoError(t, err)
 
 	var updatedArazzo map[string]interface{}
@@ -163,7 +163,7 @@ workflows:
       - stepId: test
         operationId: createannouncement
 `
-	err = os.WriteFile(filepath.Join(speakeasyDir, "test.arazzo.yaml"), []byte(arazzoContent), 0o644)
+	err = os.WriteFile(filepath.Join(speakeasyDir, "tests.arazzo.yaml"), []byte(arazzoContent), 0o644)
 	require.NoError(t, err)
 
 	// Set up the command with only one operation ID to delete
@@ -188,7 +188,7 @@ workflows:
 	assert.Contains(t, updatedGenLock.GeneratedTests, "createannouncement")
 
 	// Verify arazzo file was updated correctly
-	arazzoData, err := os.ReadFile(filepath.Join(speakeasyDir, "test.arazzo.yaml"))
+	arazzoData, err := os.ReadFile(filepath.Join(speakeasyDir, "tests.arazzo.yaml"))
 	require.NoError(t, err)
 
 	var updatedArazzo map[string]interface{}
