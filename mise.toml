@@ -1,0 +1,57 @@
+[tools]
+go = "1.24"
+gotestsum = "latest"
+golangci-lint = "latest"
+
+[tasks.test]
+description = "Run tests with gotestsum"
+run = "gotestsum --format testname -- -race -coverprofile=coverage.out ./..."
+
+[tasks.test-watch]
+description = "Run tests in watch mode"
+run = "gotestsum --watch --format testname -- -race ./..."
+
+[tasks.lint]
+description = "Run golangci-lint"
+run = "golangci-lint run ./..."
+
+[tasks."lint:fix"]
+description = "Run golangci-lint with autofixes"
+run = "golangci-lint run --fix ./..."
+
+[tasks.format]
+description = "Run golangci-lint fmt"
+alias = "fmt"
+run = "golangci-lint fmt ./..."
+
+[tasks.build]
+description = "Build the binary"
+run = "go build -o bin/speakeasy-helpers ."
+
+[tasks.install]
+description = "Install the binary"
+run = "go install ."
+
+[tasks.clean]
+description = "Clean build artifacts"
+run = "rm -rf bin/ coverage.out"
+
+[tasks.coverage]
+description = "Generate and view test coverage"
+run = [
+    "gotestsum --format testname -- -race -coverprofile=coverage.out ./...",
+    "go tool cover -html=coverage.out -o coverage.html",
+    "echo 'Coverage report generated: coverage.html'",
+]
+
+[tasks.mod-tidy]
+description = "Tidy go modules"
+run = "go mod tidy"
+
+[tasks.setup]
+description = "Initialize development environment"
+run = ["go mod tidy"]
+
+[tasks.ci]
+description = "Run CI checks (lint, test, build)"
+run = ["mise run lint", "mise run test", "mise run build"]

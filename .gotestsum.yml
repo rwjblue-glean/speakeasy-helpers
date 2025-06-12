@@ -1,0 +1,49 @@
+# Configuration for gotestsum
+# See: https://github.com/gotestyourself/gotestsum
+
+format: testname
+format-hide-empty-pkg: true
+
+# JSON file to write test results
+jsonfile: test-results.json
+
+# JUnit XML file to write test results (useful for CI)
+junitfile: junit.xml
+
+# Only run tests that match this regular expression
+# packages: "./..."
+
+# Watch mode settings
+watch:
+  # Ignore changes to these paths when watching
+  ignore:
+    - "*.log"
+    - "*.tmp"
+    - "tmp/"
+    - "vendor/"
+    - ".git/"
+    - "bin/"
+    - "coverage.*"
+    - "*.prof"
+
+# Post-run command to execute after tests complete
+# post-run-command: "echo 'Tests completed'"
+
+# Timeout for the entire test run
+# timeout: 10m
+
+# Debug mode - print additional information
+debug: false
+
+# No-color output (useful for CI environments)
+# no-color: false
+
+# Environment variables to set for test runs
+# env:
+#   - "TEST_ENV=test"
+#   - "LOG_LEVEL=debug"
+
+# Additional flags to pass to go test
+# raw:
+#   - "-count=1"
+#   - "-timeout=30s"
